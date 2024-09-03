@@ -28,17 +28,17 @@ function About() {
                     className="flex bg-[#171717] rounded-[23px] min-h-[62px] h-[62px] justify-between items-center tab-drop-shadow py-[6px] px-[6px] mr-9"
                     role="tablist" >
                     {tabOptions.map((option, index) => (
-                        <div key={index} className={"cursor-pointer rounded-2xl flex-1 h-full flex justify-center items-center transition-all duration-300" + " " +
-                            (openTab === index
-                                ? "bg-[#28292F] text-white tab-selected-drop-shadow"
-                                : "bg-transparent text-[#A3ADB2]")}>
-                            <a
-                                onClick={e => {
-                                    e.preventDefault();
-                                    setOpenTab(index);
-                                }}>
-                                {option}
-                            </a>
+                        <div
+                            onClick={e => {
+                                e.preventDefault();
+                                setOpenTab(index);
+                            }}
+                            key={index}
+                            className={"cursor-pointer rounded-2xl flex-1 h-full flex justify-center items-center transition-all duration-300" + " " +
+                                (openTab === index
+                                    ? "bg-[#28292F] text-white tab-selected-drop-shadow"
+                                    : "bg-transparent text-[#A3ADB2]")}>
+                            {option}
                         </div>
                     ))}
                 </ul>
