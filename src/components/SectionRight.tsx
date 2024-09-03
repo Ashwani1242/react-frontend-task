@@ -7,7 +7,7 @@ function SectionRight() {
     <section className="flex flex-col items-center justify-center h-full flex-1 bg-indigo-40 p-8">
       <TopWidget />
       <Margin />
-      <BottomWidget />  
+      <BottomWidget />
       <Margin />
     </section>
   )

@@ -8,6 +8,7 @@ import ArrowRight from "../icons/ArrowRight";
 
 function Gallery() {
     const imageFiles = import.meta.glob('../assets/images/*.{png,jpg,jpeg,svg}', { as: 'url' });
+
     const [imagesList, setImagesList] = useState<string[]>([]);
     const scrollRef = useRef<HTMLDivElement | null>(null);
     const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -57,6 +58,8 @@ function Gallery() {
         window.open(image, '_blank');
     };
 
+
+
     const openFileExplorer = (): void => {
         if (fileInputRef.current) {
             fileInputRef.current.click();
@@ -71,6 +74,7 @@ function Gallery() {
                 </button>
                 <button>
                     <Grid />
+
                 </button>
             </div>
             <div className="w-full h-full">
@@ -97,14 +101,12 @@ function Gallery() {
                         <div className="flex gap-[18px]">
                             <button
                                 onClick={handleScrollLeft}
-                                className="w-[45px] h-[45px] arrow-btn-drop-shadow rounded-full flex justify-center items-center bg-gradient-to-br from-[#303439] to-[#161718]"
-                            >
+                                className="w-[45px] h-[45px] arrow-btn-drop-shadow rounded-full flex justify-center items-center bg-gradient-to-br from-[#303439] to-[#161718]">
                                 <ArrowLeft />
                             </button>
                             <button
                                 onClick={handleScrollRight}
-                                className="w-[45px] h-[45px] arrow-btn-drop-shadow rounded-full flex justify-center items-center bg-gradient-to-br from-[#303439] to-[#161718]"
-                            >
+                                className="w-[45px] h-[45px] arrow-btn-drop-shadow rounded-full flex justify-center items-center bg-gradient-to-br from-[#303439] to-[#161718]">
                                 <ArrowRight />
                             </button>
                         </div>
@@ -121,8 +123,7 @@ function Gallery() {
                                     src={image}
                                     onClick={() => handleImageClick(image)}
                                     alt={`Image ${index + 1}`}
-                                    className="m-2 w-[190px] h-[179px] rounded-3xl object-cover flex-shrink-0 grayscale cursor-pointer"
-                                />
+                                    className="m-2 w-[190px] h-[179px] rounded-3xl object-cover flex-shrink-0 grayscale cursor-pointer"/>
                             ))}
                         </div>
                     </div>

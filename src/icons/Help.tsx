@@ -5,10 +5,8 @@ function Help() {
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.8}
-            stroke="url(#gradient)" // Use the gradient for the stroke
-            className="w-6 h-6"
-        >
-            {/* Define the gradient in the defs section */}
+            stroke="url(#gradient)"
+            className="w-6 h-6">
             <defs>
                 <linearGradient id="gradient" x1="0" y1="0" x2="1" y2="1">
                     <stop offset="0%" stopColor="#A3ADBA" />
