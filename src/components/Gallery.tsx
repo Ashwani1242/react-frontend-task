@@ -5,9 +5,8 @@ import Plus from "../icons/Plus";
 import ArrowLeft from "../icons/ArrowLeft";
 import ArrowRight from "../icons/ArrowRight";
 
-
 function Gallery() {
-    const imageFiles = import.meta.glob('../assets/images/*.{png,jpg,jpeg,svg}', { as: 'url' });
+    const imageFiles = import.meta.glob('../assets/images/*.{png,jpg,jpeg,svg}', { query: '?url', import: 'default' });
 
     const [imagesList, setImagesList] = useState<string[]>([]);
     const scrollRef = useRef<HTMLDivElement | null>(null);
@@ -44,13 +43,8 @@ function Gallery() {
         const file = event.target.files?.[0];
     
         if (file) {
-            const reader = new FileReader();
-            reader.onload = () => {
-                if (reader.result) {
-                    handleAddImage(reader.result.toString());
-                }
-            };
-            reader.readAsDataURL(file);
+            const objectUrl = URL.createObjectURL(file);
+            handleAddImage(objectUrl);
         }
     };    
 
@@ -58,13 +52,21 @@ function Gallery() {
         window.open(image, '_blank');
     };
 
-
-
     const openFileExplorer = (): void => {
         if (fileInputRef.current) {
             fileInputRef.current.click();
         }
     };
+
+    useEffect(() => {
+        return () => {
+            imagesList.forEach((image) => {
+                if (image.startsWith('blob:')) {
+                    URL.revokeObjectURL(image);
+                }
+            });
+        };
+    }, [imagesList]);
 
     return (
         <section className="flex justify-center h-full w-full rounded-[18.89px] max-w-[720px] max-h-[350px] px-3 py-5 bg-[#363C43] card-drop-shadow pr-[49px] ">
@@ -74,7 +76,6 @@ function Gallery() {
                 </button>
                 <button>
                     <Grid />
-
                 </button>
             </div>
             <div className="w-full h-full">
